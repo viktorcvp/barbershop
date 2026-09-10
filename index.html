@@ -5,6 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRUT | Барбершоп с характером</title>
+    <meta name="description" content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров. Атмосфера мужского клуба.">
+    <link rel="canonical" href="https://viktorcvp.github.io/barbershop/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BRUT | Барбершоп с характером">
+    <meta property="og:description" content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viktorcvp.github.io/barbershop/">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BarberShop",
+      "name": "BRUT Barbershop",
+      "description": "Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.",
+      "url": "https://viktorcvp.github.io/barbershop/",
+      "priceRange": "800-2200 RUB",
+      "areaServed": {"@type": "City", "name": "Минск"},
+      "serviceType": ["Мужская стрижка", "Моделирование бороды", "Камуфляж седины", "Детская стрижка"]
+    }
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +69,13 @@
     </style>
 </head>
 
-<body class="bg-brut-black text-white font-body antialiased selection:bg-brut-gold selection:text-black">
+<body class="bg-brut-black text-white font-body antialiased selection:bg-brut-gold selection:text-black" style="padding-top:48px;">
+
+<!-- 🎯 ПЛАШКА: демо-пример (премиум стиль BRUT) -->
+<div style="position:fixed; top:0; left:0; right:0; z-index:100; background:linear-gradient(90deg, #0a0a0a, #1a1a1a, #0a0a0a); color:#ffffff; text-align:center; padding:10px 16px; font-size:13px; font-family:'Manrope', sans-serif; box-shadow:0 2px 12px rgba(0,0,0,0.8); border-bottom:1px solid #d4af37;">
+    💈 Это демонстрационный пример сайта для барбершопа. Хотите такой же под ваш бизнес? 
+    <a href="https://t.me/viktorystel" target="_blank" style="color:#d4af37; text-decoration:underline; font-weight:700; margin-left:4px; letter-spacing:0.5px;">Написать Виктору →</a>
+</div>
 
     <!-- Navigation -->
     <nav x-data="{ mobileMenuOpen: false }"
@@ -174,7 +203,7 @@
                     <div class="text-4xl mb-4 grayscale group-hover:grayscale-0 transition">💈</div>
                     <h3 class="font-display text-2xl mb-2 text-white">ПРЕМИУМ КОСМЕТИКА</h3>
                     <p class="text-gray-400 text-sm leading-relaxed">Работаем только на проверенных брендах: Reuzel,
-                        Morgan’s, American Crew.</p>
+                        Morgan's, American Crew.</p>
                 </div>
             </div>
         </div>
