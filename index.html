@@ -5,12 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRUT | Барбершоп с характером</title>
-    <meta name="description" content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров. Атмосфера мужского клуба.">
+    <meta name="description"
+        content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров. Атмосфера мужского клуба.">
     <link rel="canonical" href="https://viktorcvp.github.io/barbershop/">
 
     <!-- Open Graph -->
     <meta property="og:title" content="BRUT | Барбершоп с характером">
-    <meta property="og:description" content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.">
+    <meta property="og:description"
+        content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://viktorcvp.github.io/barbershop/">
 
@@ -69,13 +71,17 @@
     </style>
 </head>
 
-<body class="bg-brut-black text-white font-body antialiased selection:bg-brut-gold selection:text-black" style="padding-top:48px;">
+<body class="bg-brut-black text-white font-body antialiased selection:bg-brut-gold selection:text-black"
+    style="padding-top:48px;">
 
-<!-- 🎯 ПЛАШКА: демо-пример (премиум стиль BRUT) -->
-<div style="position:fixed; top:0; left:0; right:0; z-index:100; background:linear-gradient(90deg, #0a0a0a, #1a1a1a, #0a0a0a); color:#ffffff; text-align:center; padding:10px 16px; font-size:13px; font-family:'Manrope', sans-serif; box-shadow:0 2px 12px rgba(0,0,0,0.8); border-bottom:1px solid #d4af37;">
-    💈 Это демонстрационный пример сайта для барбершопа. Хотите такой же под ваш бизнес? 
-    <a href="https://t.me/viktorystel" target="_blank" style="color:#d4af37; text-decoration:underline; font-weight:700; margin-left:4px; letter-spacing:0.5px;">Написать Виктору →</a>
-</div>
+    <!-- 🎯 ПЛАШКА: демо-пример (премиум стиль BRUT) -->
+    <div
+        style="position:fixed; top:0; left:0; right:0; z-index:100; background:linear-gradient(90deg, #0a0a0a, #1a1a1a, #0a0a0a); color:#ffffff; text-align:center; padding:10px 16px; font-size:13px; font-family:'Manrope', sans-serif; box-shadow:0 2px 12px rgba(0,0,0,0.8); border-bottom:1px solid #d4af37;">
+        💈 Это демонстрационный пример сайта для барбершопа. Хотите такой же под ваш бизнес?
+        <a href="https://t.me/viktorystel" target="_blank"
+            style="color:#d4af37; text-decoration:underline; font-weight:700; margin-left:4px; letter-spacing:0.5px;">Написать
+            Виктору →</a>
+    </div>
 
     <!-- Navigation -->
     <nav x-data="{ mobileMenuOpen: false }"
@@ -365,14 +371,22 @@
                 <p class="text-gray-400 mb-8">Оставьте заявку сейчас, чтобы зафиксировать скидку и выбрать удобное
                     время. Предложение ограничено.</p>
 
-                <form class="space-y-4 max-w-md mx-auto"
-                    @submit.prevent="alert('Спасибо! Это демо-форма. В реальном проекте здесь будет интеграция с Telegram или CRM.')">
-                    <input type="text" placeholder="Ваше имя"
-                        class="w-full bg-black/50 border border-white/10 p-4 text-white focus:border-brut-gold focus:outline-none transition placeholder-gray-600">
-                    <input type="tel" placeholder="+375 (__) ___-__-__"
+                <form class="space-y-4 max-w-md mx-auto" x-data="{ sending: false, submitted: false }" @submit.prevent="
+                          sending = true;
+                          setTimeout(() => {
+                              sending = false;
+                              submitted = true;
+                              $el.reset();
+                          }, 1000);
+                      ">
+
+                    <input type="text" name="name" placeholder="Ваше имя" required
                         class="w-full bg-black/50 border border-white/10 p-4 text-white focus:border-brut-gold focus:outline-none transition placeholder-gray-600">
 
-                    <select
+                    <input type="tel" name="phone" placeholder="+375 (__) ___-__-__" required
+                        class="w-full bg-black/50 border border-white/10 p-4 text-white focus:border-brut-gold focus:outline-none transition placeholder-gray-600">
+
+                    <select name="service" required
                         class="w-full bg-black/50 border border-white/10 p-4 text-gray-400 focus:border-brut-gold focus:outline-none transition appearance-none">
                         <option value="" disabled selected>Выберите услугу</option>
                         <option value="haircut">Мужская стрижка</option>
@@ -380,12 +394,29 @@
                         <option value="combo">Комплекс</option>
                     </select>
 
+                    <!-- Галочка согласия -->
+                    <div class="text-left">
+                        <label class="flex items-start gap-3 text-sm text-gray-400 cursor-pointer">
+                            <input type="checkbox" required
+                                class="mt-1 rounded border-white/20 bg-black/50 text-brut-gold focus:ring-brut-gold">
+                            <span>Согласен на обработку персональных данных в соответствии с <a href="privacy.html"
+                                    class="text-brut-gold hover:underline">политикой конфиденциальности</a></span>
+                        </label>
+                    </div>
+
                     <button type="submit"
-                        class="w-full py-4 bg-brut-gold text-black font-bold uppercase tracking-widest hover:bg-white transition duration-300 mt-4">
-                        Записаться со скидкой
+                        class="w-full py-4 bg-brut-gold text-black font-bold uppercase tracking-widest hover:bg-white transition duration-300 mt-4"
+                        :disabled="sending">
+                        <span x-show="!sending">Записаться со скидкой</span>
+                        <span x-show="sending">Отправка...</span>
                     </button>
-                    <p class="text-xs text-gray-600 mt-4">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
-                    </p>
+
+                    <!-- Сообщение об успехе -->
+                    <div x-show="submitted" x-transition
+                        class="text-center text-brut-gold font-bold py-4 border border-brut-gold/30 bg-brut-gold/10"
+                        style="display: none;">
+                        ✓ Заявка отправлена! Мы свяжемся с вами для подтверждения записи.
+                    </div>
                 </form>
             </div>
         </div>
