@@ -6,11 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BRUT | Барбершоп с характером</title>
     <meta name="description"
-        content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.">
+        content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров. Атмосфера мужского клуба.">
     <link rel="canonical" href="https://viktorcvp.github.io/barbershop/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="BRUT | Барбершоп с характером">
+    <meta property="og:description"
+        content="Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viktorcvp.github.io/barbershop/">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BarberShop",
+      "name": "BRUT Barbershop",
+      "description": "Премиальный барбершоп. Классическое бритье, моделирование бороды и стрижки от топ-мастеров.",
+      "url": "https://viktorcvp.github.io/barbershop/",
+      "priceRange": "800-2200 RUB",
+      "areaServed": {"@type": "City", "name": "Минск"},
+      "serviceType": ["Мужская стрижка", "Моделирование бороды", "Камуфляж седины", "Детская стрижка"]
+    }
+    </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;600;700&display=swap"
         rel="stylesheet">
 
@@ -18,18 +41,25 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { brut: { black: '#0a0a0a', dark: '#121212', gold: '#d4af37', goldhover: '#b5952f', gray: '#a3a3a3' } },
-                    fontFamily: { display: ['"Bebas Neue"', 'sans-serif'], body: ['"Manrope"', 'sans-serif'] }
+                    colors: {
+                        brut: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gold: '#d4af37',
+                            goldhover: '#b5952f',
+                            gray: '#a3a3a3'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['"Manrope"', 'sans-serif'],
+                    }
                 }
             }
         }
     </script>
     <style>
         [x-cloak] {
-            display: none !important;
-        }
-
-        #success-message {
             display: none !important;
         }
 
@@ -44,43 +74,91 @@
 <body class="bg-brut-black text-white font-body antialiased selection:bg-brut-gold selection:text-black"
     style="padding-top:48px;">
 
-    <!-- Плашка демо -->
+    <!-- 🎯 ПЛАШКА: демо-пример (премиум стиль BRUT) -->
     <div
         style="position:fixed; top:0; left:0; right:0; z-index:100; background:linear-gradient(90deg, #0a0a0a, #1a1a1a, #0a0a0a); color:#ffffff; text-align:center; padding:10px 16px; font-size:13px; font-family:'Manrope', sans-serif; box-shadow:0 2px 12px rgba(0,0,0,0.8); border-bottom:1px solid #d4af37;">
         💈 Это демонстрационный пример сайта для барбершопа. Хотите такой же под ваш бизнес?
         <a href="https://t.me/viktorystel" target="_blank"
-            style="color:#d4af37; text-decoration:underline; font-weight:700; margin-left:4px;">Написать Виктору →</a>
+            style="color:#d4af37; text-decoration:underline; font-weight:700; margin-left:4px; letter-spacing:0.5px;">Написать
+            Виктору →</a>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-brut-black/90 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
-            <a href="#" class="font-display text-3xl tracking-wider text-white">BRUT<span
-                    class="text-brut-gold">.</span></a>
-            <div class="hidden md:flex space-x-8">
-                <a href="#about" class="text-sm uppercase tracking-widest hover:text-brut-gold transition">О нас</a>
-                <a href="#services" class="text-sm uppercase tracking-widest hover:text-brut-gold transition">Услуги</a>
-                <a href="#team" class="text-sm uppercase tracking-widest hover:text-brut-gold transition">Мастера</a>
-                <a href="#contact"
-                    class="text-sm uppercase tracking-widest hover:text-brut-gold transition">Контакты</a>
+    <nav x-data="{ mobileMenuOpen: false }"
+        class="fixed w-full z-50 bg-brut-black/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="font-display text-3xl tracking-wider text-white">BRUT<span
+                        class="text-brut-gold">.</span></a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-sm uppercase tracking-widest hover:text-brut-gold transition">О нас</a>
+                    <a href="#services"
+                        class="text-sm uppercase tracking-widest hover:text-brut-gold transition">Услуги</a>
+                    <a href="#team"
+                        class="text-sm uppercase tracking-widest hover:text-brut-gold transition">Мастера</a>
+                    <a href="#contact"
+                        class="text-sm uppercase tracking-widest hover:text-brut-gold transition">Контакты</a>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="#booking"
+                    class="hidden md:inline-block px-6 py-2 border border-brut-gold text-brut-gold uppercase text-xs tracking-widest hover:bg-brut-gold hover:text-black transition duration-300">
+                    Записаться
+                </a>
+
+                <!-- Mobile Burger -->
+                <button @click="mobileMenuOpen = !mobileMenuOpen" class="md:hidden text-white focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
             </div>
-            <a href="#booking"
-                class="hidden md:inline-block px-6 py-2 border border-brut-gold text-brut-gold uppercase text-xs tracking-widest hover:bg-brut-gold hover:text-black transition duration-300">Записаться</a>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-collapse x-cloak class="md:hidden bg-brut-dark border-b border-white/10">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a @click="mobileMenuOpen = false" href="#about"
+                    class="block px-3 py-3 text-lg uppercase tracking-wider hover:text-brut-gold">О нас</a>
+                <a @click="mobileMenuOpen = false" href="#services"
+                    class="block px-3 py-3 text-lg uppercase tracking-wider hover:text-brut-gold">Услуги</a>
+                <a @click="mobileMenuOpen = false" href="#team"
+                    class="block px-3 py-3 text-lg uppercase tracking-wider hover:text-brut-gold">Мастера</a>
+                <a @click="mobileMenuOpen = false" href="#booking"
+                    class="block px-3 py-3 text-brut-gold text-lg uppercase tracking-wider font-bold">Записаться</a>
+            </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Overlay -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-brut-black z-10"></div>
+        <!-- Placeholder Image (Unsplash) -->
         <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80"
-            alt="Barber" class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale">
-        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
-            <p class="text-brut-gold uppercase tracking-[0.3em] mb-4 text-sm md:text-base">Премиальный уход за собой</p>
-            <h1 class="font-display text-6xl md:text-8xl lg:text-9xl leading-none mb-6">СТРИЖКИ С <br><span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">ХАРАКТЕРОМ</span></h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">Классическое бритье,
-                моделирование бороды и стрижки от топ-мастеров. Атмосфера мужского клуба в центре города.</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            alt="Barber working" class="absolute inset-0 w-full h-full object-cover opacity-40 grayscale">
+
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto" x-data="{ shown: false }"
+            x-init="setTimeout(() => shown = true, 300)">
+            <p x-show="shown" x-transition.duration.1000ms
+                class="text-brut-gold uppercase tracking-[0.3em] mb-4 text-sm md:text-base">Премиальный уход за собой
+            </p>
+            <h1 x-show="shown" x-transition.delay.300ms.duration.1000ms
+                class="font-display text-6xl md:text-8xl lg:text-9xl leading-none mb-6">
+                СТРИЖКИ С <br><span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">ХАРАКТЕРОМ</span>
+            </h1>
+            <p x-show="shown" x-transition.delay.600ms.duration.1000ms
+                class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Классическое бритье, моделирование бороды и стрижки от топ-мастеров. Атмосфера мужского клуба в центре
+                города.
+            </p>
+            <div x-show="shown" x-transition.delay.900ms.duration.1000ms
+                class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="#booking"
                     class="px-8 py-4 bg-brut-gold text-black font-bold uppercase tracking-widest hover:bg-brut-goldhover transition duration-300">Записаться
                     онлайн</a>
@@ -88,10 +166,197 @@
                     class="px-8 py-4 border border-white/20 text-white uppercase tracking-widest hover:border-white hover:bg-white/5 transition duration-300">Прайс-лист</a>
             </div>
         </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden md:block">
+            <svg class="w-6 h-6 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3">
+                </path>
+            </svg>
+        </div>
     </section>
 
-    <!-- Booking Form Section -->
+    <!-- Features / About -->
+    <section id="about" class="py-24 bg-brut-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-card p-8 hover:-translate-y-2 transition duration-500 group">
+                    <div class="text-4xl mb-4 grayscale group-hover:grayscale-0 transition">🪒</div>
+                    <h3 class="font-display text-2xl mb-2 text-white">ОПАСНАЯ БРИТВА</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Королевское бритье по технологии 1920-х годов.
+                        Горячее полотенце и идеальный контур.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="glass-card p-8 hover:-translate-y-2 transition duration-500 group">
+                    <div class="text-4xl mb-4 grayscale group-hover:grayscale-0 transition">🥃</div>
+                    <h3 class="font-display text-2xl mb-2 text-white">НАПИТКИ</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Кофе, виски или авторский чай бесплатно к каждой
+                        стрижке. Расслабься и доверься мастеру.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="glass-card p-8 hover:-translate-y-2 transition duration-500 group">
+                    <div class="text-4xl mb-4 grayscale group-hover:grayscale-0 transition">⏱️</div>
+                    <h3 class="font-display text-2xl mb-2 text-white">ПУНКТУАЛЬНОСТЬ</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Стрижем строго по записи. Никаких очередей и
+                        ожидания. Мы ценим ваше время.</p>
+                </div>
+                <!-- Feature 4 -->
+                <div class="glass-card p-8 hover:-translate-y-2 transition duration-500 group">
+                    <div class="text-4xl mb-4 grayscale group-hover:grayscale-0 transition">💈</div>
+                    <h3 class="font-display text-2xl mb-2 text-white">ПРЕМИУМ КОСМЕТИКА</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Работаем только на проверенных брендах: Reuzel,
+                        Morgan's, American Crew.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price List -->
+    <section id="services" class="py-24 bg-brut-black">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl md:text-6xl mb-4">ПРАЙС-ЛИСТ</h2>
+                <div class="h-1 w-20 bg-brut-gold mx-auto"></div>
+            </div>
+
+            <div class="space-y-0">
+                <!-- Item 1 -->
+                <div
+                    class="group flex justify-between items-end py-6 border-b border-white/10 hover:border-brut-gold/50 transition duration-300 cursor-default">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white group-hover:text-brut-gold transition">Мужская
+                            стрижка</h4>
+                        <p class="text-gray-500 text-sm mt-1">Мытье головы + массаж + укладка</p>
+                    </div>
+                    <div class="font-display text-2xl text-white group-hover:text-brut-gold transition">1 500 ₽</div>
+                </div>
+                <!-- Item 2 -->
+                <div
+                    class="group flex justify-between items-end py-6 border-b border-white/10 hover:border-brut-gold/50 transition duration-300 cursor-default">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white group-hover:text-brut-gold transition">Моделирование
+                            бороды</h4>
+                        <p class="text-gray-500 text-sm mt-1">Распаривание + опасная бритва + масло</p>
+                    </div>
+                    <div class="font-display text-2xl text-white group-hover:text-brut-gold transition">1 000 ₽</div>
+                </div>
+                <!-- Item 3 (Combo) -->
+                <div
+                    class="group flex justify-between items-end py-6 border-b border-white/10 hover:border-brut-gold/50 transition duration-300 cursor-default bg-white/5 px-4 -mx-4">
+                    <div>
+                        <div class="flex items-center gap-3">
+                            <h4 class="text-xl font-semibold text-brut-gold">КОМПЛЕКС «СТРИЖКА + БОРОДА»</h4>
+                            <span
+                                class="text-xs border border-brut-gold text-brut-gold px-2 py-0.5 uppercase">Выгода</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-1">Полный уход за волосами и лицом за один визит</p>
+                    </div>
+                    <div class="font-display text-3xl text-brut-gold">2 200 ₽</div>
+                </div>
+                <!-- Item 4 -->
+                <div
+                    class="group flex justify-between items-end py-6 border-b border-white/10 hover:border-brut-gold/50 transition duration-300 cursor-default">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white group-hover:text-brut-gold transition">Камуфляж
+                            седины</h4>
+                        <p class="text-gray-500 text-sm mt-1">Естественный цвет за 15 минут</p>
+                    </div>
+                    <div class="font-display text-2xl text-white group-hover:text-brut-gold transition">800 ₽</div>
+                </div>
+                <!-- Item 5 -->
+                <div
+                    class="group flex justify-between items-end py-6 border-b border-white/10 hover:border-brut-gold/50 transition duration-300 cursor-default">
+                    <div>
+                        <h4 class="text-xl font-semibold text-white group-hover:text-brut-gold transition">Детская
+                            стрижка (до 7 лет)</h4>
+                        <p class="text-gray-500 text-sm mt-1">Терпение, мультики и леденец в подарок</p>
+                    </div>
+                    <div class="font-display text-2xl text-white group-hover:text-brut-gold transition">1 200 ₽</div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="#booking"
+                    class="inline-block px-10 py-4 bg-white text-black font-bold uppercase tracking-widest hover:bg-gray-200 transition duration-300">Выбрать
+                    мастера</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-brut-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-5xl md:text-6xl mb-4">НАШИ МАСТЕРА</h2>
+                <p class="text-gray-400">Профессионалы, которые создают стиль</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Master 1 -->
+                <div class="group relative overflow-hidden">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Master Alexey"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <h3 class="font-display text-3xl text-white">АЛЕКСЕЙ</h3>
+                        <p class="text-brut-gold text-sm uppercase tracking-wider mb-2">Основатель • Топ-барбер</p>
+                        <p
+                            class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                            Опыт 7 лет. Специализация: классические фейды и работа с опасной бритвой.</p>
+                    </div>
+                </div>
+
+                <!-- Master 2 -->
+                <div class="group relative overflow-hidden">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Master Dmitry"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <h3 class="font-display text-3xl text-white">ДМИТРИЙ</h3>
+                        <p class="text-brut-gold text-sm uppercase tracking-wider mb-2">Барбер</p>
+                        <p
+                            class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                            Опыт 5 лет. Мастер детальных стрижек и оформления бороды.</p>
+                    </div>
+                </div>
+
+                <!-- Master 3 -->
+                <div class="group relative overflow-hidden">
+                    <div class="aspect-[3/4] overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Master Sergey"
+                            class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition duration-500">
+                        <h3 class="font-display text-3xl text-white">СЕРГЕЙ</h3>
+                        <p class="text-brut-gold text-sm uppercase tracking-wider mb-2">Барбер</p>
+                        <p
+                            class="text-gray-400 text-sm opacity-0 group-hover:opacity-100 transition duration-500 delay-100">
+                            Опыт 3 года. Эксперт по длинным волосам и современным текстурам.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking / Lead Magnet -->
     <section id="booking" class="py-24 bg-brut-black relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div
+            class="absolute top-0 right-0 w-64 h-64 bg-brut-gold/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-64 h-64 bg-blue-900/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
+        </div>
+
         <div class="max-w-3xl mx-auto px-4 relative z-10">
             <div class="glass-card p-8 md:p-12 text-center border border-brut-gold/30">
                 <span
@@ -100,11 +365,10 @@
                 <h2 class="font-display text-4xl md:text-5xl mb-4">ПЕРВАЯ СТРИЖКА <br><span class="text-brut-gold">СО
                         СКИДКОЙ 20%</span></h2>
                 <p class="text-gray-400 mb-8">Оставьте заявку сейчас, чтобы зафиксировать скидку и выбрать удобное
-                    время.</p>
+                    время. Предложение ограничено.</p>
 
-                <!-- Упрощенная форма -->
                 <form class="space-y-4 max-w-md mx-auto" id="booking-form"
-                    onsubmit="event.preventDefault(); this.querySelector('button').innerText = 'Отправка...'; setTimeout(() => { document.getElementById('success-message').style.display = 'block'; this.reset(); this.querySelector('button').innerText = 'Записаться со скидкой'; setTimeout(() => { document.getElementById('success-message').style.display = 'none'; }, 3000); }, 1000);">
+                    onsubmit="event.preventDefault(); const btn = this.querySelector('button'); const msg = this.querySelector('#success-msg'); btn.innerText = 'Отправка...'; setTimeout(() => { btn.innerText = 'Записаться со скидкой'; msg.style.display = 'block'; this.reset(); setTimeout(() => { msg.style.display = 'none'; }, 4000); }, 1000);">
 
                     <input type="text" name="name" placeholder="Ваше имя" required
                         class="w-full bg-black/50 border border-white/10 p-4 text-white focus:border-brut-gold focus:outline-none transition placeholder-gray-600">
@@ -133,10 +397,9 @@
                         Записаться со скидкой
                     </button>
 
-                    <!-- Сообщение об успехе -->
-                    <div id="success-message"
-                        class="text-center text-brut-gold font-bold py-4 border border-brut-gold/30 bg-brut-gold/10"
-                        style="display: none;">
+                    <!-- Плашка успеха (скрыта по умолчанию) -->
+                    <div id="success-msg" style="display: none;"
+                        class="text-center text-brut-gold font-bold py-4 border border-brut-gold/30 bg-brut-gold/10">
                         ✓ Заявка отправлена! Мы свяжемся с вами для подтверждения записи.
                     </div>
                 </form>
@@ -144,9 +407,80 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-brut-dark py-10 text-center text-sm text-gray-600 border-t border-white/5">
-        <p>© 2026 BRUT Barbershop. Все права защищены.</p>
+    <!-- Footer & Contacts -->
+    <footer id="contact" class="bg-brut-dark pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- Brand -->
+                <div>
+                    <a href="#" class="font-display text-3xl tracking-wider text-white block mb-6">BRUT<span
+                            class="text-brut-gold">.</span></a>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                        Мужской клуб, где традиции встречаются с современностью. Качество, атмосфера и уважение к
+                        каждому гостю.
+                    </p>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-display text-xl text-white mb-6">КОНТАКТЫ</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="text-brut-gold mt-0.5">📍</span>
+                            <span>г. Минск, ул. Немига, 12<br>БЦ "Галерея", 2 этаж</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-brut-gold">📞</span>
+                            <a href="tel:+375291234567" class="hover:text-white transition">+375 (29) 123-45-67</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-brut-gold">✉️</span>
+                            <a href="mailto:info@brut.by" class="hover:text-white transition">info@brut.by</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hours -->
+                <div>
+                    <h4 class="font-display text-xl text-white mb-6">ГРАФИК РАБОТЫ</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Пн — Пт</span>
+                            <span class="text-white">10:00 — 22:00</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Суббота</span>
+                            <span class="text-white">11:00 — 22:00</span>
+                        </li>
+                        <li class="flex justify-between border-b border-white/5 pb-2">
+                            <span>Воскресенье</span>
+                            <span class="text-white">11:00 — 21:00</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Socials -->
+                <div>
+                    <h4 class="font-display text-xl text-white mb-6">МЫ В СОЦСЕТЯХ</h4>
+                    <div class="flex gap-4">
+                        <a href="#"
+                            class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-brut-gold hover:border-brut-gold hover:text-black transition duration-300">IG</a>
+                        <a href="#"
+                            class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-brut-gold hover:border-brut-gold hover:text-black transition duration-300">TG</a>
+                        <a href="#"
+                            class="w-10 h-10 border border-white/10 flex items-center justify-center hover:bg-brut-gold hover:border-brut-gold hover:text-black transition duration-300">VK</a>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-600">
+                <p>© 2026 BRUT Barbershop. Все права защищены.</p>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="hover:text-gray-400 transition">Политика конфиденциальности</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
 </body>
