@@ -63,6 +63,11 @@
             display: none !important;
         }
 
+        /* Железобетонное скрытие плашки до загрузки скрипта */
+        #success-message {
+            display: none !important;
+        }
+
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(10px);
@@ -412,9 +417,8 @@
                     </button>
 
                     <!-- Сообщение об успехе -->
-                    <div x-show="submitted" x-transition
-                        class="text-center text-brut-gold font-bold py-4 border border-brut-gold/30 bg-brut-gold/10"
-                        style="display: none;">
+                    <div x-show="submitted" x-transition id="success-message"
+                        class="text-center text-brut-gold font-bold py-4 border border-brut-gold/30 bg-brut-gold/10">
                         ✓ Заявка отправлена! Мы свяжемся с вами для подтверждения записи.
                     </div>
                 </form>
